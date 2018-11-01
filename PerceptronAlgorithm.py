@@ -25,11 +25,11 @@ def trainPerceptron(inputs, t, weights, rho, iterNo):
     
     for iter in range(iterNo):
         for i in range(inputs.shape[0]):
-        #write train code in here
+       
             x = inputs[i,:]
             sum = weights * x
             y = sigmoid_activation(sum,False)
-        #end your code
+        
         dw = rho * (t - y) * (sigmoid_activation(y) * (1 - sigmoid_activation(y)))
         dw += dw
         if(iter % 10 == 0):
@@ -38,17 +38,18 @@ def trainPerceptron(inputs, t, weights, rho, iterNo):
     
     return weights
 
-def testPerceptron(sample_test, weights):
+#Module that returns prediction value
+def testPerceptron(sample_test, weights): 
 
     y = 0   
-    #write prediction code in here
+   
     for i in range(len(sample_test) - 1):
         y += weights[i + 1] * sample_test[i]
         
   
     return y
  
-#######our main code
+#Main code
 np.random.seed(1)
 
 from keras.datasets import cifar10    
@@ -82,7 +83,7 @@ weights = np.append(weights, bias, axis=0) #add bias
 weights = weights.reshape(3073,)
 
 
-##convert all variables to float
+#Convert all variables to float
 weights = np.float32(weights)
 x_train = np.float32(x_train)/255
 t = np.float32(t)
